@@ -19,16 +19,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.SECONDS)
+@BenchmarkMode(Mode.Throughput)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class RESTBenchmark {
-
-    private Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
-
 
     @Benchmark
     public Integer getKryo() throws Exception {
         //Given
+        final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
         final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/kryo" );
 
         //When
@@ -44,6 +42,7 @@ public class RESTBenchmark {
     @Benchmark
     public Integer getProtobuf() throws Exception {
         //Given
+        final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
         final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/protobuf" );
 
         //When
@@ -59,6 +58,7 @@ public class RESTBenchmark {
     @Benchmark
     public Integer getJson() throws Exception {
         //Given
+        final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
         final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/status" );
 
         //When

@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class BenchmarkBase {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy-hh-mm-ss");
 
     public static void main(String[] args) throws RunnerException, IOException {
 
@@ -24,18 +25,18 @@ public class BenchmarkBase {
         final String decodePath = URLDecoder.decode(path, StandardCharsets.UTF_8.name());
         properties.load(new InputStreamReader(new FileInputStream(decodePath)));
 
-        int warmup = Integer.parseInt(properties.getProperty("benchmark.warmup.iterations", "5"));
-        int iterations = Integer.parseInt(properties.getProperty("benchmark.test.iterations", "5"));
-        int forks = Integer.parseInt(properties.getProperty("benchmark.test.forks", "1"));
-        int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "1"));
-        String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*Benchmark.*");
-        String resultFilePrefix = properties.getProperty("benchmark.global.resultfileprefix", "jmh-");
+        final int warmUp = Integer.parseInt(properties.getProperty("benchmark.warmup.iterations", "5"));
+        final int iterations = Integer.parseInt(properties.getProperty("benchmark.test.iterations", "5"));
+        final int forks = Integer.parseInt(properties.getProperty("benchmark.test.forks", "1"));
+        final int threads = Integer.parseInt(properties.getProperty("benchmark.test.threads", "1"));
+        final String testClassRegExPattern = properties.getProperty("benchmark.global.testclassregexpattern", ".*Benchmark.*");
+        final String resultFilePrefix = properties.getProperty("benchmark.global.resultfileprefix", "jmh-");
 
         ResultFormatType resultsFileOutputType = ResultFormatType.JSON;
 
         Options opt = new OptionsBuilder()
                 .include(testClassRegExPattern)
-                .warmupIterations(warmup)
+                .warmupIterations(warmUp)
                 .measurementIterations(iterations)
                 .forks(forks)
                 .threads(threads)
@@ -51,10 +52,6 @@ public class BenchmarkBase {
     }
 
     private static String buildResultsFileName(String resultFilePrefix, ResultFormatType resultType) {
-        
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy-hh-mm-ss");
-
         String suffix;
         switch (resultType) {
             case CSV:
@@ -73,8 +70,7 @@ public class BenchmarkBase {
                 break;
 
         }
-
-        return String.format("target/%s%s%s", resultFilePrefix, date.format(formatter), suffix);
+        return String.format("target/%s%s%s", resultFilePrefix, LocalDateTime.now().format(formatter), suffix);
     }
     
     
