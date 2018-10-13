@@ -491,6 +491,14 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <configuration>
+                    <repoToken>ZvpZ41Zb6QTeRoDz0uECD9gXofVysfQie</repoToken>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.bazaarvoice.maven.plugins</groupId>
                 <artifactId>process-exec-maven-plugin</artifactId>
                 <version>0.7</version>

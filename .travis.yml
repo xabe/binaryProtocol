@@ -1,0 +1,8 @@
+language: java
+sudo: false
+
+jdk:
+  - oraclejdk9
+
+after_success:
+- mvn clean verify coveralls:report -q
