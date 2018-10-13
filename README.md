@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/xabe/binaryProtocol.svg?branch=master)](https://travis-ci.org/xabe/binaryProtocol)
-[![Coverage Status](https://coveralls.io/repos/xabe/binaryProtocol/badge.svg?branch=master&service=github)](https://coveralls.io/github/xabe/binaryProtocol?branch=master
+[![Coverage Status](https://coveralls.io/repos/xabe/binaryProtocol/badge.svg?branch=master&service=github)](https://coveralls.io/github/xabe/binaryProtocol?branch=master)
 # Protocolos binarios
 
 Este es un ejemplo que se muestra como usar con Jersey con protocolos binarios:
