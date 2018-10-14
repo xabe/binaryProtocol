@@ -497,6 +497,13 @@
                 <configuration>
                     <repoToken>ZvpZ41Zb6QTeRoDz0uECD9gXofVysfQie</repoToken>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.3.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>com.bazaarvoice.maven.plugins</groupId>
