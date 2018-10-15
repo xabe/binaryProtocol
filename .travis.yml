@@ -1,10 +1,19 @@
 language: java
 sudo: false
 jdk: oraclejdk9
+install: true
+addons:
+  sonarcloud:
+    organization: "xabe-github"
+    token:
+      secure: "YXzwj5Qv/FYpxxgwYaQpL1usQcnlUDAg2JlGBGT8t31jawAGfZHsK2RHFf5mSRR7hEuL0O7eo+TJOrb+xR1VLN4/OtY+QY9SUP1Mx+9fyAdNpQP0t1yATySgZDFxnCDxGTzTv1jGi7sylqFkrrGfSKzhZ28gfAPnJXpJIaJ76+8HdoyXb9USGn9mdDDKV0gNje7e2YXu13LDXOlr6yAqJs1CRwLU8bKEC2HlBHGQsE+q018sjviASEViv+k8uxUvludnYnvunEsnduoKY+/G4ti9tg0y9k1JQjLnKdKfJSiyRGiobDTAKg85XzPsb56HzdbGS7Rqr1ISIsVH9klcSlUg2b2BwO64dMa19AbaIMqa/VQhd+PA+iUJxU5EXq2zD86btz9YvfpCls8G7vbbUIWv5C5j2Yz4LhTFI83W4MZQUpnPxCyMdH9h+AFpbh+TLSAqOskoWKVGmnz4ummY71l3n+HTNVNtisvvZsf49ixz27MxpKSU7lXeFclJJDkZ9+7e9tZaJBzzJ2BISI72DSI3TqRFTu/KoCokin53e4N8A3lS5bR3mC1AEJ7Hosnx1Sgdhfk0we6SBqJok9n/sAbtKxGhbu3b2/LG5IEXQmvWa1cdvSX6SDG0SYYuLHTIyueJgvUVMXbyLy3mlXJNlweJs55bGPb2boY3K4S694g="
 
-install:
-  - mvn clean test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+cache:
+  directories:
+  - '$HOME/.m2/repository'
+  - '$HOME/.sonar/cache'
+
 script:
-  - mvn verify
+  - mvn verify sonar:sonar -Dsonar.jacoco.reportPath=target/coverage-reports/jacoco-merge.exec -Dsonar.exclusions="**/*Config.java"
 after_success:
   - mvn coveralls:report -q
