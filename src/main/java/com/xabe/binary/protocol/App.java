@@ -15,8 +15,9 @@ import java.util.logging.LogManager;
 
 public class App {
     private static final String BIND_IP = "0.0.0.0";
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
     private static HttpServer server;
-    private static Logger LOGGER = LoggerFactory.getLogger(App.class);
+
 
     public static void main(String[] args) throws InterruptedException, IOException {
         System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
@@ -34,7 +35,7 @@ public class App {
     }
 
     private static String getUriInfo(String protocol,int port) {
-        return String.format(protocol + "://%s:%s", BIND_IP, port);
+        return String.format("%s://%s:%d", protocol, BIND_IP, port);
     }
 
 }
