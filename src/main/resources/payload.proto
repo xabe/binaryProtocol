@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_package = "com.xabe.binary.protocol.payload";
-option java_outer_classname = "PayloadProtubuf";
+option java_outer_classname = "PayloadProtobuf";
 
 message Payload {
     int32 number = 1;

@@ -58,6 +58,7 @@ public class KryoProvider implements MessageBodyWriter<Object>, MessageBodyReade
         final Kryo kryo = pool.borrow();
         try (final Output output = new Output( baos );){
             kryo.writeObject( output, object );
+            output.close();
             entityStream.write( baos.toByteArray() );
         } finally {
             pool.release( kryo );

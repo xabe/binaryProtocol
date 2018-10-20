@@ -28,7 +28,7 @@
         <sonar.jacoco.reportPaths>${project.build.directory}/coverage-reports/jacoco-ut.exec,${project.build.directory}/coverage-reports/jacoco-it.exec,${project.build.directory}/coverage-reports/jacoco-merge.exec</sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.exclusions>**/*Config.java,**/*App.java,**/PayloadProtubuf.java</sonar.exclusions>
+        <sonar.exclusions>**/*Config.java,**/*App.java,**/PayloadProtobuf.java</sonar.exclusions>
         <!-- TEST PROPERTIES -->
         <skipTests>false</skipTests>
         <surefire.version>2.17</surefire.version>
