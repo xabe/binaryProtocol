@@ -2,7 +2,7 @@ package com.xabe.binary.protocol.it.resource;
 
 import com.xabe.binary.protocol.config.MediaTypeExt;
 import com.xabe.binary.protocol.config.protobuf.ProtobufProvider;
-import com.xabe.binary.protocol.payload.PayloadProtubuf;
+import com.xabe.binary.protocol.payload.PayloadProtobuf;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -30,7 +30,7 @@ public class ProtobufResourceTest_IT {
                 .get();
 
         //Then
-        final PayloadProtubuf.Payload payload = response.readEntity(PayloadProtubuf.Payload.class);
+        final PayloadProtobuf.Payload payload = response.readEntity(PayloadProtobuf.Payload.class);
         assertThat(payload, is(notNullValue()));
         assertThat(payload.getName(), is("protobuf"));
         assertThat(payload.getDate(), is(notNullValue()));

@@ -1,6 +1,6 @@
 package com.xabe.binary.protocol.resource;
 
-import com.xabe.binary.protocol.payload.PayloadProtubuf;
+import com.xabe.binary.protocol.payload.PayloadProtobuf;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -15,7 +15,7 @@ public class ProtobufResourceTest {
         final ProtobufResource protobufResource = new ProtobufResource();
 
         //When
-        final PayloadProtubuf.Payload payload = protobufResource.getPayload();
+        final PayloadProtobuf.Payload payload = protobufResource.getPayload();
 
         //Then
         assertThat(payload, is(notNullValue()));
