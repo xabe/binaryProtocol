@@ -44,18 +44,16 @@ public class Payload {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Payload that = (Payload) o;
-
-        return new EqualsBuilder()
-                .append(date, that.date)
-                .append(name, that.name)
-                .append(number, that.number)
-                .append(active, that.active)
-                .isEquals();
+        if (o instanceof Payload) {
+            final Payload that = (Payload) o;
+            return new EqualsBuilder()
+                    .append(date, that.date)
+                    .append(name, that.name)
+                    .append(number, that.number)
+                    .append(active, that.active)
+                    .isEquals();
+        }
+        return false;
     }
 
     @Override
