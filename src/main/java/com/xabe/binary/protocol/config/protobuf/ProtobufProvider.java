@@ -62,15 +62,7 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
     public Message readFrom(Class<Message> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) {
 
         try {
-            final Method newBuilder = methodCache.computeIfAbsent(
-                            type,
-                            t -> {
-                                try {
-                                    return t.getMethod(NEW_BUILDER);
-                                } catch (Exception e) {
-                                    return null;
-                                }
-                            });
+            final Method newBuilder = methodCache.computeIfAbsent(type,this::getMethod);
             final Message.Builder builder = (Message.Builder) newBuilder.invoke(type);
             if (mediaType.getSubtype().contains(TEXT_FORMAT)) {
                 TextFormat.merge(new InputStreamReader(entityStream, StandardCharsets.UTF_8), builder);
@@ -85,5 +77,13 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
 
     private boolean isAssignableFrom(Class<?> type) {
         return Message.class.isAssignableFrom(type);
+    }
+
+    private Method getMethod(Class type){
+        try {
+            return type.getMethod(NEW_BUILDER);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
