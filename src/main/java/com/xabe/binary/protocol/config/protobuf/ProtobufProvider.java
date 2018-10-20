@@ -33,7 +33,7 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
     }
 
     @Override
-    public Message readFrom(Class<Message> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException, WebApplicationException {
+    public Message readFrom(Class<Message> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream) {
 
         try {
             final Method newBuilder = methodCache.computeIfAbsent(
@@ -68,7 +68,7 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
     }
 
     @Override
-    public void writeTo(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+    public void writeTo(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) {
         try {
             entityStream.write(message.toByteArray());
         } catch (Exception e) {

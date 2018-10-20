@@ -13,9 +13,6 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.TEXT_PLAIN)
 public class StatusResource {
 
-    public StatusResource() {
-    }
-
     @Path("/status")
     @GET
     public String getStatus() {
