@@ -26,6 +26,33 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
     public static final String TEXT_FORMAT = "text-format";
     private final Map<Class<Message>, Method> methodCache = new ConcurrentHashMap<>();
 
+    //
+    // MessageBodyWriter
+    //
+
+    @Override
+    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return isAssignableFrom(type);
+    }
+
+    @Override
+    public long getSize(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return message.getSerializedSize();
+    }
+
+    @Override
+    public void writeTo(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) {
+        try {
+            entityStream.write(message.toByteArray());
+        } catch (Exception e) {
+            throw new WebApplicationException(e);
+        }
+    }
+
+    //
+    // MessageBodyReader
+    //
+
     @Override
     public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
         return isAssignableFrom(type);
@@ -51,25 +78,6 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
             } else {
                 return builder.mergeFrom(entityStream).build();
             }
-        } catch (Exception e) {
-            throw new WebApplicationException(e);
-        }
-    }
-
-    @Override
-    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return isAssignableFrom(type);
-    }
-
-    @Override
-    public long getSize(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-        return message.getSerializedSize();
-    }
-
-    @Override
-    public void writeTo(Message message, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) {
-        try {
-            entityStream.write(message.toByteArray());
         } catch (Exception e) {
             throw new WebApplicationException(e);
         }
