@@ -1,6 +1,12 @@
 [![Build Status](https://travis-ci.org/xabe/binaryProtocol.svg?branch=master)](https://travis-ci.org/xabe/binaryProtocol)
-[![Coverage Status](https://coveralls.io/repos/xabe/binaryProtocol/badge.svg?branch=master&service=github)](https://coveralls.io/github/xabe/binaryProtocol?branch=master)
-
+[![Sonar](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=alert_status)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=alert_status)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=coverage)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=coverage)
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=sqale_rating)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=sqale_rating)
+[![Technical](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=sqale_index)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=sqale_index)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=vulnerabilities)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=vulnerabilities)
+[![Duplicate](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=duplicated_lines_density)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=duplicated_lines_density)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=reliability_rating)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=reliability_rating)
+[![Security](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=security_rating)](https://sonarcloud.io/api/project_badges/measure?project=xabe%3Abinary-protocol&metric=security_rating)
 # Protocolos binarios
 
 Este es un ejemplo que se muestra como usar con Jersey con protocolos binarios:
