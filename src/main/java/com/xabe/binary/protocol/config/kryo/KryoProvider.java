@@ -54,11 +54,11 @@ public class KryoProvider implements MessageBodyWriter<Object>, MessageBodyReade
                         Annotation[] annotations, MediaType mediaType,
                         MultivaluedMap<String, Object> httpHeaders,
                         OutputStream entityStream) throws IOException {
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         final Kryo kryo = pool.borrow();
-        try (final Output output = new Output( baos );){
-            kryo.writeObject( output, object );
-            output.close();
+        try (final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                final Output output = new Output( baos );){
+            kryo.writeObject( output, object ); //writeClassAndObject
+            output.flush();
             entityStream.write( baos.toByteArray() );
         } finally {
             pool.release( kryo );
@@ -82,7 +82,7 @@ public class KryoProvider implements MessageBodyWriter<Object>, MessageBodyReade
         try {
             final Kryo kryo = pool.borrow();
             try (Input input = new Input( entityStream );) {
-                return kryo.readObject( input, type );
+                return kryo.readObject( input, type ); //readClassAndObject
             } finally {
                 pool.release( kryo );
             }
