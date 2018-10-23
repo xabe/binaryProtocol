@@ -5,8 +5,6 @@ import com.xabe.binary.protocol.config.kryo.KryoProvider;
 import com.xabe.binary.protocol.config.protobuf.ProtobufProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
-import org.junit.Before;
-import org.junit.Test;
 import org.openjdk.jmh.annotations.*;
 
 import javax.ws.rs.client.Client;

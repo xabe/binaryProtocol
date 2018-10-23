@@ -1,8 +1,6 @@
 package com.xabe.binary.protocol.it.resource;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -11,6 +9,10 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.nio.charset.StandardCharsets;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class StatusResourceTest_IT {
 
@@ -28,7 +30,7 @@ public class StatusResourceTest_IT {
 
         //Then
         final String statusPayload = response.readEntity(String.class);
-        Assert.assertThat(statusPayload,CoreMatchers.is(CoreMatchers.notNullValue()));
+        assertThat(statusPayload,is(notNullValue()));
     }
 
 }

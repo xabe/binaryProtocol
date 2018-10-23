@@ -1,30 +1,25 @@
 package com.xabe.binary.protocol.config.protobuf;
 
 import com.xabe.binary.protocol.config.MediaTypeExt;
-import com.xabe.binary.protocol.payload.Payload;
 import com.xabe.binary.protocol.payload.PayloadProtobuf;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.WebApplicationException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class ProtobufProviderTest {
 
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
-
     private ProtobufProvider protobufProvider;
 
-    @Before
+    @BeforeEach
     public void init(){
         this.protobufProvider = new ProtobufProvider();
     }
@@ -75,13 +70,15 @@ public class ProtobufProviderTest {
     @Test
     public void givenAByteArrayWhenInvokeReadFromThenReturnWebApplicationException() throws Exception {
         //Given
+        final Class payloadClass = String.class;
         final ByteArrayInputStream inputStream = new ByteArrayInputStream(new byte[]{});
 
         //When
 
-        exception.expect(WebApplicationException.class);
-        protobufProvider.readFrom(null, null, null, null, null, inputStream);
+        assertThrows(WebApplicationException.class, () -> {
+            protobufProvider.readFrom(payloadClass, null, null, null, null, inputStream);
 
+        });
     }
 
 }
