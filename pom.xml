@@ -32,7 +32,7 @@
         <!-- TEST PROPERTIES -->
         <skipTests>false</skipTests>
         <surefire.version>2.19.1</surefire.version>
-        <surefire.argline>-Xmx512m -XX:MaxPermSize=128m</surefire.argline>
+        <surefire.argline>-Xmx512m</surefire.argline>
         <jacoco.argline>-javaagent:${settings.localRepository}${file.separator}org${file.separator}jacoco${file.separator}org.jacoco.agent${file.separator}${jacoco.version}${file.separator}org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${project.build.directory}${file.separator}coverage-reports${file.separator}jacoco-ut.exec</jacoco.argline>
         <skipIntegrationTests>false</skipIntegrationTests>
         <junit.jupiter.version>5.1.0</junit.jupiter.version>
@@ -538,26 +538,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.3.0</version>
-                <configuration>
-                    <repoToken>wA0pSRLvSdH1BnLJZ2DLKVFqp0kYbF0eo</repoToken>
-                    <jacocoReports>
-                        <jacocoReport>${project.reporting.outputDirectory}/jacoco-merge/jacoco.xml</jacocoReport>
-                        <jacocoReport>${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</jacocoReport>
-                        <jacocoReport>${project.reporting.outputDirectory}/jacoco-itt/jacoco.xml</jacocoReport>
-                    </jacocoReports>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jaxb-api</artifactId>
-                        <version>2.3.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>com.bazaarvoice.maven.plugins</groupId>
                 <artifactId>process-exec-maven-plugin</artifactId>
                 <version>0.7</version>
@@ -577,6 +557,10 @@
                             <arguments>
                                 <argument>java</argument>
                                 <argument>-Xmx512M</argument>
+                                <argument>-Xms512M</argument>
+                                <argument>-XX:MetaspaceSize=128M</argument>
+                                <argument>-XX:MaxMetaspaceSize=128M</argument>
+                                <argument>-Xss512K</argument>
                                 <argument>--add-modules=java.xml.bind,java.activation</argument>
                                 <argument>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</argument>
                                 <argument>-Dorg.jboss.logging.provider=slf4j</argument>
