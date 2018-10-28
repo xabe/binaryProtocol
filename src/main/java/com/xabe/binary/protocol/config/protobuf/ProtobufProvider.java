@@ -83,7 +83,7 @@ public class ProtobufProvider implements MessageBodyReader<Message>, MessageBody
         try {
             return type.getMethod(NEW_BUILDER);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new WebApplicationException(e);
         }
     }
 }
