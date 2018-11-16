@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class RESTBenchmark {
 
     @Benchmark
-    public Integer getKryo() throws Exception {
+    public void getKryo() throws Exception {
         //Given
         final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
         final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/kryo" );
@@ -34,11 +34,11 @@ public class RESTBenchmark {
                 .get();
 
         //Then
-        return response.getLength();
+        response.getLength();
     }
 
     @Benchmark
-    public Integer getProtobuf() throws Exception {
+    public void getProtobuf() throws Exception {
         //Given
         final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
         final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/protobuf" );
@@ -50,14 +50,14 @@ public class RESTBenchmark {
                 .get();
 
         //Then
-        return response.getLength();
+        response.getLength();
     }
 
     @Benchmark
-    public Integer getJson() throws Exception {
+    public void getJson() throws Exception {
         //Given
         final Client client = ClientBuilder.newClient(new ClientConfig().register(KryoProvider.class).register(ProtobufProvider.class).property(ClientProperties.CONNECT_TIMEOUT,1000).property(ClientProperties.READ_TIMEOUT,1000));
-        final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/status" );
+        final WebTarget target = client.target( "http://localhost:8008"  ).path( "/v1" ).path( "/json" );
 
         //When
         final Response response = client.target(target.getUri())
@@ -66,6 +66,6 @@ public class RESTBenchmark {
                 .get();
 
         //Then
-        return response.getLength();
+        response.getLength();
     }
 }

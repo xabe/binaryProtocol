@@ -11,11 +11,11 @@
 
     <Appenders>
 
-        <Console name="F2Console" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%-5p %d{ISO8601} %-40x [%c] %m%n"/>
         </Console>
 
-        <RollingRandomAccessFile append="true" name="IDEsError"
+        <RollingRandomAccessFile append="true" name="Error"
                                  fileName="${LOGPATH}/APP_Error.${APP}.${HOST}.log"
                                  filePattern="${LOGPATH}/APP_Error.${APP}.${HOST}.log.%d{yyyy-MM-dd-HH}">
             <PatternLayout>
@@ -29,7 +29,7 @@
             </Policies>
         </RollingRandomAccessFile>
 
-        <RollingRandomAccessFile append="true" name="IDEsTrace"
+        <RollingRandomAccessFile append="true" name="Trace"
                                  fileName="${LOGPATH}/APP_Trace.${APP}.${HOST}.log"
                                  filePattern="${LOGPATH}/APP_Trace.${APP}.${HOST}.log.%d{yyyy-MM-dd-HH}">
             <PatternLayout>
@@ -45,18 +45,23 @@
     <Loggers>
 
         <Root level="INFO">
-            <AppenderRef ref="IDEsTrace"/>
-            <AppenderRef ref="F2Console"/>
+            <AppenderRef ref="Trace"/>
+            <AppenderRef ref="Console"/>
         </Root>
 
         <Logger name="com.xabe" level="ERROR" additivity="false">
-            <AppenderRef ref="IDEsError"/>
-            <AppenderRef ref="IDEsTrace"/>
+            <AppenderRef ref="Error"/>
+            <AppenderRef ref="Trace"/>
         </Logger>
 
         <Logger name="com.xabe" level="INFO" additivity="false">
-            <AppenderRef ref="F2Console"/>
-            <AppenderRef ref="IDEsTrace"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Trace"/>
+        </Logger>
+
+        <Logger name="org.glassfish" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Trace"/>
         </Logger>
 
     </Loggers>

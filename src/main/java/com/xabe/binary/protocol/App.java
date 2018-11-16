@@ -2,6 +2,7 @@ package com.xabe.binary.protocol;
 
 import com.xabe.binary.protocol.config.CustomResourceConfig;
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.ServerConfiguration;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
@@ -15,13 +16,10 @@ import java.util.logging.LogManager;
 
 public class App {
     private static final String BIND_IP = "0.0.0.0";
-    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
     private static HttpServer server;
 
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
-        System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
         LogManager.getLogManager().reset();
         SLF4JBridgeHandler.removeHandlersForRootLogger();
         SLF4JBridgeHandler.install();
@@ -29,8 +27,9 @@ public class App {
         Runtime.getRuntime().addShutdownHook( new Thread( () ->  server.shutdownNow() ));
         final ResourceConfig rc = new CustomResourceConfig();
         server = GrizzlyHttpServerFactory.createHttpServer(URI.create(getUriInfo("http" ,8008)), rc,false);
+        server.getServerConfiguration().setAllowPayloadForUndefinedHttpMethods(true);
         server.start();
-        LOGGER.info( "Stop the application using CTRL+C" );
+        LoggerFactory.getLogger(App.class).info( "Stop the application using CTRL+C" );
         Thread.currentThread().join();
     }
 

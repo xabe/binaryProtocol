@@ -620,6 +620,10 @@
                                 <argument>-Xss512K</argument>
                                 <argument>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</argument>
                                 <argument>-Dorg.jboss.logging.provider=slf4j</argument>
+                                <argument>-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector</argument>
+                                <argument>-DAsyncLogger.RingBufferSize=128</argument>
+                                <argument>-Dorg.apache.logging.log4j.simplelog.StatusLogger.level=DEBUG</argument>
+                                <argument>-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager</argument>
                                 <argument>-Dlog4j.configurationFile=file://${app.config.dir}${file.separator}log4j2.xml</argument>
                                 <argument>-Dapp.log.path=${tmp.dir}</argument>
                                 <argument>-Dapp.log.name=${app.name}</argument>

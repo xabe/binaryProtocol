@@ -21,4 +21,17 @@ public class JsonResourceTest {
         assertThat(payload, is(notNullValue()));
 
     }
+
+    @Test
+    public void shouldReturnJsonPayloadWhenInvokeDeletePayload() throws Exception {
+        //Given
+        final JsonResource jsonResource = new JsonResource();
+
+        //When
+        final Payload payload = jsonResource.getPayloadDelete();
+
+        //Then
+        assertThat(payload, is(notNullValue()));
+
+    }
 }
