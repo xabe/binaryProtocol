@@ -4,6 +4,7 @@ import com.xabe.binary.protocol.config.jackson.ObjectMapperContextResolver;
 import com.xabe.binary.protocol.config.kryo.KryoProvider;
 import com.xabe.binary.protocol.config.protobuf.ProtobufProvider;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 
@@ -18,6 +19,7 @@ public class CustomResourceConfig extends ResourceConfig {
         register(new ObjectMapperContextResolver());
         register(new KryoProvider());
         register(new ProtobufProvider());
+        register(new LoggingFeature());
         property( ServerProperties.BV_FEATURE_DISABLE, true );
         property( ServerProperties.RESOURCE_VALIDATION_IGNORE_ERRORS, true );
         property( ServerProperties.TRACING, "ALL" );
